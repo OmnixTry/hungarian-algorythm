@@ -12,8 +12,10 @@ namespace HungarianAlgorythm
         public CostMatrix(int[,] matrix)
         {
             Matrix = matrix;
-            MarkedColls = new bool[matrix.GetLength(1)];
-            MarkedRows = new bool[matrix.GetLength(0)];
+            MarkedColls = new bool[NumberOfColls];
+            MarkedRows = new bool[NumberOfRows];
+            HighlightedColls = new bool[NumberOfColls];
+            HighlightedRows = new bool[NumberOfRows];
         }
 
         public int[,] Matrix { get; set; }
@@ -21,6 +23,26 @@ namespace HungarianAlgorythm
         public bool[] MarkedRows { get; } 
         
         public bool[] MarkedColls { get; }
+
+        public bool[] HighlightedRows { get; }
+
+        public bool[] HighlightedColls { get; }
+
+        public int NumberOfRows
+        {
+            get 
+            {
+                return Matrix.GetLength(0);
+            }
+        }
+
+        public int NumberOfColls
+        {
+            get
+            {
+                return Matrix.GetLength(1);
+            }
+        }
 
         public void SubstractFromRow(int rowNumber, int number)
         {
@@ -52,14 +74,27 @@ namespace HungarianAlgorythm
 
         public void Display()
         {
-            for (int i = 0; i < Matrix.GetLength(0); i++)
+            Console.Write("".PadLeft(8));
+            for (int i = 0; i < NumberOfColls; i++)
             {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
+                Console.Write((MarkedColls[i] ? "x" : "").PadLeft(8));
+            }
+            Console.WriteLine();
+            for (int i = 0; i < NumberOfRows; i++)
+            {
+                Console.Write((MarkedRows[i] ? "x" : "").PadLeft(8));
+                for (int j = 0; j < NumberOfColls; j++)
                 {
+                    if (HighlightedColls[j] || HighlightedRows[i])
+                        Console.BackgroundColor = ConsoleColor.Green;
+                    else
+                        Console.BackgroundColor = ConsoleColor.Black;
                     Console.Write($"{Matrix[i, j]}".PadLeft(8));
                 }
+                Console.BackgroundColor = ConsoleColor.Black;
                 Console.WriteLine();
-            }                
+            }
+            
         }
     }
 }

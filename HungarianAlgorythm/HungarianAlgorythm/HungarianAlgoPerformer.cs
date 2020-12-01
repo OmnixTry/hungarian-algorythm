@@ -14,5 +14,18 @@ namespace HungarianAlgorythm
         {
             CostMatrix = costMatrix;
         }
+
+        public void Execute()
+        {
+            // substract minimum of the row
+            for (int i = 0; i < CostMatrix.NumberOfRows; i++)
+                CostMatrix.SubstractFromRow(i, CostMatrix.GetMinOfTheRow(i));
+
+            // substract minimum of the coll
+            for (int i = 0; i < CostMatrix.NumberOfColls; i++)
+                CostMatrix.SubstractFromColl(i, CostMatrix.GetMinOfTheColl(i));
+
+
+        }
     }
 }
