@@ -24,8 +24,15 @@ namespace HungarianAlgorythm
             // substract minimum of the coll
             for (int i = 0; i < CostMatrix.NumberOfColls; i++)
                 CostMatrix.SubstractFromColl(i, CostMatrix.GetMinOfTheColl(i));
+            
+            CostMatrix.CoverZeroes();
 
-
+            while (CostMatrix.NumberOfLines() != Math.Max(CostMatrix.NumberOfRows, CostMatrix.NumberOfColls))
+            {
+                CostMatrix.SubstractSmallestUncovered();
+                CostMatrix.RestoreMarkedHighlighted();                
+                CostMatrix.CoverZeroes();
+            }
         }
     }
 }

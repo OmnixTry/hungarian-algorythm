@@ -11,12 +11,9 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            int[,] matrix = new int[,] { { 2500, 4000, 3500}, { 4000, 6000, 3500}, { 2000, 4000, 2500} };
+            //int[,] matrix = new int[,] { { 2500, 4000, 3500}, { 4000, 6000, 3500}, { 2000, 4000, 2500} };
+            int[,] matrix = new int[,] { { 1500, 4000, 4500}, { 2000, 6000, 3500 }, { 2000, 4000, 2500 } };
             CostMatrix costMatrix = new CostMatrix(matrix);
-            costMatrix.HighlightedRows[0] = true;
-            costMatrix.HighlightedColls[2] = true;
-            costMatrix.MarkedColls[1] = true;
-            costMatrix.MarkedRows[2] = true;
             costMatrix.Display();
             /*            Console.WriteLine();
                         costMatrix.SubstractFromColl(1, 500);            
@@ -37,11 +34,13 @@ namespace Demo
             HungarianAlgoPerformer performer = new HungarianAlgoPerformer(costMatrix);
             performer.Execute();
             costMatrix.Display();
+            Console.WriteLine($"Result: {costMatrix.ResultSum}");
+            int[] optAssignments = performer.CostMatrix.OptimalAssignments();
 
-
-
-
-
+            foreach (int item in optAssignments)
+            {
+                Console.Write($"{item}, ");
+            }
         }
     }
 }
