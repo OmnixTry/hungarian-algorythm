@@ -40,3 +40,8 @@ Performs all the steps under the `CostMatrix` in the right order to achieve opti
 - `CostMatrix` contains the matrix of costs for job assignment.
 - `public void Execute()` executes the hungarian algorythm's steps on the `CostMatrix` in the right order and gets the optimal solution from it.
 ## Code Usage Examples
+The following exaple shows example of usage of the code and the output of this particular usage.
+
+![CodeExample](img/code-example.png)
+
+![Output](img/example-result.jpg)
